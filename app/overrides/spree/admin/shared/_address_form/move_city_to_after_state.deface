@@ -1,0 +1,2 @@
+cut start: 'erb[loud]:contains("field_container f.object, :city")', end: 'erb[silent]:contains("end")'
+insert_before 'erb[loud]:contains("field_container f.object, :phone")'

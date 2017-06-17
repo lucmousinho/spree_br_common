@@ -1,0 +1,16 @@
+  <!-- replace_contents 'erb[loud]:contains("field_container f.object, :city")' closing_selector 'erb[silent]:contains("end")' -->
+  <%= f.label :city, Spree.t(:city) %>
+  <%= f.collection_select(
+      :city_id, f.object.state ? f.object.state.cities : [],
+      :id, :name,
+      { include_blank: false },
+      { class: 'form-control' }
+  ) %>
+
+  <% unless f.object.state %>
+    <script>
+      $(function() {
+          Spree.updateCity('b');
+      });
+    </script>
+  <% end %>

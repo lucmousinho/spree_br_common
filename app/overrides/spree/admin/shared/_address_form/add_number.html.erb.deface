@@ -1,0 +1,6 @@
+<!-- insert_after 'erb[loud]:contains("field_container f.object, :address2")' -->
+<%= field_container f.object, :number, class: ["form-group", "#{type}-row"] do %>
+	<%= f.label :number, Spree.t(:number) %>
+	<%= f.text_field :number, class: 'form-control' %>
+  <%= error_message_on f.object, :number %>
+<% end %>
