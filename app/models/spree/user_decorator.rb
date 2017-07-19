@@ -3,20 +3,24 @@ require 'validates_timeliness'
 
 Spree::User.class_eval do
 
-  validates_presence_of :phone
+  validates_presence_of :phone, unless: :should_not_validate
   validates :date_of_birth,
             presence: true,
             timeliness: {
               on_or_before: lambda { 18.years.ago.at_end_of_day },
               on_or_after: lambda { 100.years.ago.at_midnight },
               type: :datetime
-            }
-  validates :cpf, presence: true
-  validates :first_name, :last_name, presence: true, length: {maximum: 100}
-  validates :phone, :alternative_phone, length: {maximum: 11}
-  validate :valid_cpf
+            }, unless: :should_not_validate
+  validates :cpf, presence: true, unless: :should_not_validate
+  validates :first_name, :last_name, presence: true, length: {maximum: 100}, unless: :should_not_validate
+  validates :phone, :alternative_phone, length: {maximum: 11}, unless: :should_not_validate
+  validate :valid_cpf, unless: :should_not_validate
 
   before_validation :sanitize_fields
+
+  def should_not_validate
+    !accepting_invitation? && block_from_invitation?
+  end
 
   def full_name
     "#{first_name} #{last_name}"
