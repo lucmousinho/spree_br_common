@@ -6,8 +6,7 @@ Spree::UserRegistrationsController.class_eval do
 
   def parse_date_of_birth
     params[:spree_user][:date_of_birth] = DateTime.strptime(
-      params[:spree_user][:date_of_birth],
-      Spree.t('date_picker.format', default: '%Y/%m/%d')
+      params[:spree_user][:date_of_birth], '%Y-%m-%d'
     ) rescue ''
   end
 end
