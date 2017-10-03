@@ -1,7 +1,5 @@
-#
-# Place all seeds in /seeds/ folder.
-#
-Dir[File.dirname(__FILE__) + '/seeds/*.rb'].sort.each do |file|
-  puts "Seeds #{file} ..."
-  require file
-end
+# Loads seed data out of default dir
+default_path = File.join(File.dirname(__FILE__), 'default')
+
+Rake::Task['db:load_dir'].reenable
+Rake::Task['db:load_dir'].invoke(default_path)
