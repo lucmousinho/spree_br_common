@@ -1,6 +1,6 @@
 country = Spree::Country.find_by(iso: 'BR')
 
-Spree::State.create!([
+[
  { name: 'Acre', abbr: 'AC', country: country},
  { name: 'Alagoas', abbr: 'AL', country: country},
  { name: 'Amapá', abbr: 'AP', country: country},
@@ -28,4 +28,6 @@ Spree::State.create!([
  { name: 'São Paulo', abbr: 'SP', country: country},
  { name: 'Sergipe', abbr: 'SE', country: country},
  { name: 'Tocantins', abbr: 'TO', country: country}
-])
+].each do |state|
+  Spree::State.create(state) unless Spree::State.exists?(name: state[:name])
+end
