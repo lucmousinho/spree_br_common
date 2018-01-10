@@ -12,6 +12,8 @@ Spree::Core::Engine.routes.draw do
       resources :states do
         resources :cities, only: [:index, :show]
       end
+      
+      get 'countries/:country_id/cities', to: 'cities#index'
     end
   end
 
