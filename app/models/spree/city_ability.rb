@@ -15,5 +15,3 @@ module Spree
 
   end
 end
-
-Spree::Ability.register_ability(Spree::CityAbility)
