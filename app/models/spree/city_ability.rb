@@ -1,7 +1,5 @@
-require 'cancan'
-
 module Spree
-  class AbilityDecorator
+  class CityAbility
     include CanCan::Ability
 
     def initialize(user)
@@ -18,4 +16,4 @@ module Spree
   end
 end
 
-Spree::Ability.register_ability(Spree::AbilityDecorator)
+Spree::Ability.register_ability(Spree::CityAbility)
