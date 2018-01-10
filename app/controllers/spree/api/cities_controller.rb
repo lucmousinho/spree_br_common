@@ -4,8 +4,7 @@ module Spree
       skip_before_action :authenticate_user
 
       def index
-        @cities = scope.ransack(params[:q]).result.
-          includes(:state).order('name ASC')
+        @cities = scope.ransack(params[:q]).result.order('name ASC')
 
         if params[:page] || params[:per_page]
           @cities = @cities.page(params[:page]).per(params[:per_page])
@@ -25,8 +24,7 @@ module Spree
       private
       def scope
         if params[:state_id]
-          @state = State.accessible_by(current_ability, :read).find(params[:state_id])
-          return @state.cities.accessible_by(current_ability, :read)
+          return City.accessible_by(current_ability, :read).where(state_id: params[:state_id])
         else
           return City.accessible_by(current_ability, :read)
         end
