@@ -15,4 +15,7 @@ Spree.config do |config|
   # config.track_inventory_levels = false
 end
 
+# Register custom abilities
+Spree::Ability.register_ability(Spree::CityAbility)
+
 Spree.user_class = "Spree::User"
