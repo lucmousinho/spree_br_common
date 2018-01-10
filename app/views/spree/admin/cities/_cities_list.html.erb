@@ -1,0 +1,26 @@
+<div id="new_city" data-hook></div>
+
+<table class="table" id='listing_cities' data-hook>
+  <thead>
+    <tr data-hook="states_header">
+      <th><%= Spree.t(:name) %></th>
+      <th class="text-center"><%= Spree.t(:ibge_code) %></th>
+      <th class="actions"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cities.each do |city| %>
+      <tr id="<%= spree_dom_id city%>" data-hook="cities_row">
+        <td><%= city.name %></td>
+        <td class="text-center"><%= city.ibge_code %></td>
+        <td class="actions actions-2 text-right">
+          <%= link_to_edit(city, no_text: true) if can? :edit, city %>
+          <%= link_to_delete(city, no_text: true) if can? :delete, city %>
+        </td>
+      </tr>
+    <% end %>
+    <% if @cities.empty? %>
+      <tr><td colspan="3"><%= Spree.t(:none) %></td></tr>
+    <% end %>
+  </tbody>
+</table>
