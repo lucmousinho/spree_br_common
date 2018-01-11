@@ -13,7 +13,7 @@ Spree::Core::Engine.routes.draw do
         resources :cities, only: [:index, :show]
       end
       
-      get 'countries/:country_id/cities', to: 'cities#index'
+      get 'countries/:country_id/cities', to: 'cities#index', as: 'country_cities'
     end
   end
 
