@@ -1,4 +1,4 @@
-class AddDetailsToSpreeUser < ActiveRecord::Migration
+class AddDetailsToSpreeUser < ActiveRecord::Migration[4.2]
   def change
     unless defined?(User)
       change_table :spree_users do |t|

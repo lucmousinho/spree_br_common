@@ -1,4 +1,4 @@
-class CreateSpreeCities < ActiveRecord::Migration
+class CreateSpreeCities < ActiveRecord::Migration[4.2]
   def change
     create_table :spree_cities do |t|
       t.references :state
